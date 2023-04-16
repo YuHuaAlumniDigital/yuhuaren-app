@@ -9,6 +9,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('Notification'),
         centerTitle: false,
         flexibleSpace: Container(

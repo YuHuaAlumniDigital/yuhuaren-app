@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:yuhuaren_app/home/home.dart';
 import 'package:yuhuaren_app/login/login.dart';
+import 'package:yuhuaren_app/notification/notification.dart';
+import 'package:yuhuaren_app/otp/otp.dart';
+import 'package:yuhuaren_app/profile/profile.dart';
 import 'package:yuhuaren_app/register/register.dart';
+import 'package:yuhuaren_app/reset_password/reset_password.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -14,9 +19,21 @@ void main() {
 }
 
 final GoRouter _router = GoRouter(routes: [
-  GoRoute(path: '/', redirect: (context, state) => '/register'),
+  GoRoute(path: '/', redirect: (context, state) => '/notification'),
   GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
-  GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
+  GoRoute(
+      path: '/register', builder: (context, state) => const RegisterScreen()),
+  GoRoute(path: '/otp', builder: (context, state) => const OtpScreen()),
+  GoRoute(
+    path: '/reset-password',
+    builder: (context, state) => const ResetPasswordScreen(),
+  ),
+  GoRoute(
+    path: '/home',
+    builder: (context, state) => const HomeScreen(),
+  ),
+  GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
+  GoRoute(path: '/notification', builder: (context, state) => const NotificationScreen())
 ]);
 
 class MyApp extends StatelessWidget {

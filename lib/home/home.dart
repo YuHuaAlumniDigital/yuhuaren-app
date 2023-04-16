@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/home/drawer.dart';
 
-import '../shared/bottom_nav_bar/buttom_nav_bar.dart';
+import '../navigation/buttom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

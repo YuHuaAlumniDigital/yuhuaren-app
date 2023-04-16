@@ -8,6 +8,7 @@ import 'package:yuhuaren_app/otp/otp.dart';
 import 'package:yuhuaren_app/profile/profile.dart';
 import 'package:yuhuaren_app/register/register.dart';
 import 'package:yuhuaren_app/reset_password/reset_password.dart';
+import 'package:yuhuaren_app/schedule/schedule.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -33,7 +34,8 @@ final GoRouter _router = GoRouter(routes: [
     builder: (context, state) => const HomeScreen(),
   ),
   GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
-  GoRoute(path: '/notification', builder: (context, state) => const NotificationScreen())
+  GoRoute(path: '/notification', builder: (context, state) => const NotificationScreen()),
+  GoRoute(path: '/schedule', builder: (context, state) => const ScheduleScreen()),
 ]);
 
 class MyApp extends StatelessWidget {

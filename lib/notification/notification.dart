@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../shared/bottom_nav_bar/buttom_nav_bar.dart';
+import '../navigation/buttom_nav_bar.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);

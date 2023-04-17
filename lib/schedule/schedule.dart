@@ -67,7 +67,7 @@ class ScheduleScreen extends StatelessWidget {
   get cards {
     List<Widget> widgets = [];
     for (int i= 0; i < 100; i++) {
-      widgets.add(const EventCard());
+      widgets.add(const EventTile());
     }
     return widgets;
   }

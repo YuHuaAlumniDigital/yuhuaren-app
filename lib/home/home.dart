@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/home/drawer.dart';
 
 import '../navigation/buttom_nav_bar.dart';
+import 'activity/filter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,12 +19,87 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(image: MemoryImage(data), fit: BoxFit.scaleDown, alignment: Alignment.centerRight),
+              // image: DecorationImage(image: MemoryImage(data), fit: BoxFit.scaleDown, alignment: Alignment.centerRight),
+              ),
+          child: Text(
+            'LOGO',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
+          alignment: Alignment.bottomRight,
         ),
       ),
       drawer: HomeDrawer(),
-      body: Center(child: Text('home')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi, Yin Chuang Sum',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Welcome to Yu Hua Alumni',
+              style: TextStyle(fontSize: 28),
+            ),
+            ActivityTypeFilter(),
+            Text(
+              'Upcoming Events',
+              style: TextStyle(fontSize: 16),
+            ),
+            Container(
+              height: 300,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) => Container(
+                        width: 250.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey),
+                        child: Column(
+                          children: [
+                            Image.memory(data),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0,0,0,8),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('title'),
+                                            Text('subtitle'),
+                                          ],
+                                        ),
+                                        Spacer(),
+                                        ElevatedButton(onPressed: () {}, child: Text('SJKC'))
+                                      ],
+                                    ),
+                                  ),
+                                  Text('description.......\n'
+                                      '.......'),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(
+                        width: 10,
+                      )),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavBar(),
     );
   }

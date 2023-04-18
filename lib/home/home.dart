@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/home/drawer.dart';
 
 import '../navigation/buttom_nav_bar.dart';
-import 'activity/filter.dart';
+import '../activity/card.dart';
+import '../activity/filter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,8 +35,7 @@ class HomeScreen extends StatelessWidget {
       drawer: HomeDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               'Hi, Yin Chuang Sum',
@@ -55,43 +55,40 @@ class HomeScreen extends StatelessWidget {
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) => Container(
-                        width: 250.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey),
-                        child: Column(
-                          children: [
-                            Image.memory(data),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0,0,0,8),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('title'),
-                                            Text('subtitle'),
-                                          ],
-                                        ),
-                                        Spacer(),
-                                        ElevatedButton(onPressed: () {}, child: Text('SJKC'))
-                                      ],
-                                    ),
-                                  ),
-                                  Text('description.......\n'
-                                      '.......'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                  itemBuilder: (BuildContext context, int index) =>
+                      ActivityCard(data: data),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(
+                        width: 10,
+                      )),
+            ),
+            Text(
+              'Joined Events',
+              style: TextStyle(fontSize: 16),
+            ),
+            Container(
+              height: 300,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ActivityCard(data: data),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(
+                        width: 10,
+                      )),
+            ),
+            Text(
+              'Past Events',
+              style: TextStyle(fontSize: 16),
+            ),
+            Container(
+              height: 130,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) =>
+                      MinimizedActivityCard(data: data),
                   separatorBuilder: (BuildContext context, int index) =>
                       SizedBox(
                         width: 10,

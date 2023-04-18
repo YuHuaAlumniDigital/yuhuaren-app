@@ -1,6 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:yuhuaren_app/schedule/event.dart';
+import 'package:yuhuaren_app/activity/tile.dart';
 
 import '../navigation/buttom_nav_bar.dart';
 import 'calendar.dart';

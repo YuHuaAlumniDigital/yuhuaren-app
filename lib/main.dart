@@ -10,6 +10,8 @@ import 'package:yuhuaren_app/register/register.dart';
 import 'package:yuhuaren_app/reset_password/reset_password.dart';
 import 'package:yuhuaren_app/schedule/schedule.dart';
 
+import 'activity/activity.dart';
+
 void main() {
   runApp(MultiProvider(
     providers: [
@@ -20,7 +22,7 @@ void main() {
 }
 
 final GoRouter _router = GoRouter(routes: [
-  GoRoute(path: '/', redirect: (context, state) => '/schedule'),
+  GoRoute(path: '/', redirect: (context, state) => '/login'),
   GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
   GoRoute(
       path: '/register', builder: (context, state) => const RegisterScreen()),
@@ -36,6 +38,7 @@ final GoRouter _router = GoRouter(routes: [
   GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
   GoRoute(path: '/notification', builder: (context, state) => const NotificationScreen()),
   GoRoute(path: '/schedule', builder: (context, state) => const ScheduleScreen()),
+  GoRoute(path: '/activity/:id', builder: (context, state) => const ActivityScreen()),
 ]);
 
 class MyApp extends StatelessWidget {

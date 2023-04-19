@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.0.5
   flutter_otp_text_field: ^1.1.1
   calendar_date_picker2: ^0.5.2
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:
@@ -92,3 +93,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  color: "#403F88"
+  image: assets/splash.png
+  android_12:
+    icon_background_color: "#403F88"
+    image: assets/splash_android.png
+  web: false

@@ -40,6 +40,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   calendar_date_picker2: ^0.5.2
   flutter_native_splash: ^2.2.19
+  flutter_launcher_icons: ^0.13.0
 
 dev_dependencies:
   flutter_test:
@@ -100,3 +101,13 @@ flutter_native_splash:
     icon_background_color: "#403F88"
     image: assets/splash_android.png
   web: false
+
+flutter_icons:
+  image_path_ios: assets/logo.png
+  image_path_android: assets/logo_android.png
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: #403F88
+  adaptive_icon_foreground: #403F88
+  min_sdk_android: 21

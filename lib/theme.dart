@@ -62,10 +62,18 @@ const appBarTheme = AppBarTheme(
   ),
 );
 
+const textTheme = TextTheme(
+  bodyMedium: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  ),
+);
+
 final themeData = ThemeData(
   appBarTheme: appBarTheme,
   scaffoldBackgroundColor: Colors.white,
   inputDecorationTheme: inputDecorationTheme,
   elevatedButtonTheme: elevatedButtonThemeData,
   textButtonTheme: textButtonThemeData,
+  textTheme: textTheme,
 );

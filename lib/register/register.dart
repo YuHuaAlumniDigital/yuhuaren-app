@@ -45,8 +45,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             PasswordFormField(
               labelText: 'Password',
-              helperText:
-                  '6-12 characters included 1 number & Uppercase letter',
+              helperText: HELPER_TEXT,
             ),
             PasswordFormField(
               labelText: 'Confirm Password',

@@ -52,3 +52,5 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
     return _hidden ? Icons.visibility : Icons.visibility_off;
   }
 }
+
+const HELPER_TEXT = '6-12 characters included 1 number & Uppercase letter';

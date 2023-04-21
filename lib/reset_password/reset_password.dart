@@ -12,10 +12,6 @@ class ResetPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Reset Password',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-          ),
         ),
         leading: IconButton(
           onPressed: () {
@@ -27,12 +23,9 @@ class ResetPasswordScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 41.0),
+        padding: const EdgeInsets.symmetric(horizontal: 41.0, vertical: 80.0),
         child: Column(
           children: [
-            SizedBox(
-              height: 80,
-            ),
             Center(
               child: Text('Please enter the new password'),
             ),
@@ -52,7 +45,12 @@ class ResetPasswordScreen extends StatelessWidget {
             SizedBox(
               height: 80,
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Confirm'))
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Confirm',
+              ),
+            )
           ],
         ),
       ),

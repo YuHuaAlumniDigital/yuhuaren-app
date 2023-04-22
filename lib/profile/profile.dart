@@ -12,37 +12,55 @@ class ProfileScreen extends StatelessWidget {
         title: Text('Profile'),
         centerTitle: false,
       ),
-      body: Column(
-        children: [
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: EditTextFormField(
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 40.0,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              EditTextFormField(
+                padding: EdgeInsets.symmetric(vertical: 20),
                 labelText: 'Name',
                 initialValue: 'Sum Yin Chuang',
-              )),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: EditTextFormField(
-              labelText: 'Phone Number',
-              initialValue: '012-3456789',
-            ),
+              ),
+              EditTextFormField(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                labelText: 'Phone Number',
+                initialValue: '012-3456789',
+              ),
+              EditTextFormField(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                labelText: 'Email',
+                initialValue: 'example@email.com',
+              ),
+              EditTextFormField(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                labelText: 'Password',
+                obscureText: true,
+                initialValue: 'asdf1234',
+              )
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: EditTextFormField(
-              labelText: 'Email',
-              initialValue: 'example@email.com',
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff4DA5A4DE),
+              blurRadius: 2,
+              spreadRadius: 0,
+              offset: const Offset(0, 1),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: EditTextFormField(
-              labelText: 'Password',
-              obscureText: true,
-              initialValue: 'asdf1234',
+            BoxShadow(
+              color: Color(0xff406664CC),
+              blurRadius: 14,
+              spreadRadius: 0,
+              offset: const Offset(0, 1.5),
             ),
-          )
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavBar(),
     );
@@ -53,12 +71,14 @@ class EditTextFormField extends StatefulWidget {
   final String labelText;
   final bool obscureText;
   final String initialValue;
+  final EdgeInsetsGeometry padding;
 
   const EditTextFormField(
       {super.key,
       required this.labelText,
       this.initialValue = '',
-      this.obscureText = false});
+      this.obscureText = false,
+      this.padding = EdgeInsets.zero});
 
   @override
   State<EditTextFormField> createState() => _EditTextFormFieldState();
@@ -69,27 +89,39 @@ class _EditTextFormFieldState extends State<EditTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: TextFormField(
-            decoration: InputDecoration(
-              labelText: widget.labelText,
+    var icon = Icon(Icons.edit_outlined);
+    var text = Text('Edit');
+
+    return Padding(
+      padding: widget.padding,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: widget.labelText,
+                border: InputBorder.none,
+              ),
+              initialValue: widget.initialValue,
+              obscureText: widget.obscureText,
+              enabled: _enabled,
             ),
-            initialValue: widget.initialValue,
-            obscureText: widget.obscureText,
-            enabled: _enabled,
           ),
-        ),
-        InkWell(
-          child: Text('Edit'),
-          onTap: () {
-            setState(() {
-              _enabled = !_enabled;
-            });
-          },
-        )
-      ],
+          TextButton.icon(
+            onPressed: () {
+              setState(() {
+                _enabled = !_enabled;
+              });
+            },
+            icon: icon,
+            label: text,
+            style: TextButton.styleFrom(
+              maximumSize: Size(200, 200),
+              minimumSize: Size(10, 10),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

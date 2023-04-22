@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ import 'package:yuhuaren_app/profile/profile.dart';
 import 'package:yuhuaren_app/register/register.dart';
 import 'package:yuhuaren_app/reset_password/reset_password.dart';
 import 'package:yuhuaren_app/schedule/schedule.dart';
+import 'package:yuhuaren_app/shared/locale.dart';
 import 'package:yuhuaren_app/theme.dart';
 
 import 'activity/activity.dart';
@@ -26,7 +28,7 @@ void main() {
 }
 
 final GoRouter _router = GoRouter(routes: [
-  GoRoute(path: '/', redirect: (context, state) => '/schedule'),
+  GoRoute(path: '/', redirect: (context, state) => '/login'),
   GoRoute(
     path: '/login',
     builder: (context, state) => const LoginScreen(),
@@ -65,16 +67,40 @@ final GoRouter _router = GoRouter(routes: [
   ),
 ]);
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final FlutterLocalization _localization = FlutterLocalization.instance;
+
+  @override
+  void initState() {
+    _localization.init(
+      mapLocales: [
+        const MapLocale('en', AppLocale.EN),
+        const MapLocale('cn', AppLocale.CN),
+      ],
+      initLanguageCode: 'en',
+    );
+    _localization.onTranslatedLanguage = _onTranslatedLanguage;
+    FlutterNativeSplash.remove();
+    super.initState();
+  }
+
+  void _onTranslatedLanguage(Locale? locale) {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
-
     return MaterialApp.router(
       routerConfig: _router,
+      supportedLocales: _localization.supportedLocales,
+      localizationsDelegates: _localization.localizationsDelegates,
       theme: themeData,
     );
   }

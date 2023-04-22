@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+
+import '../shared/locale.dart';
 
 class LoginLogo extends StatelessWidget {
   const LoginLogo({Key? key}) : super(key: key);
@@ -17,9 +20,9 @@ class LoginLogo extends StatelessWidget {
                 width: 140,
               ),
               const SizedBox(height: 50,),
-              const Text(
-                "Welcome to Yu Hua Alumni",
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
+              Text(
+                AppLocale.welcomeText.getString(context),
+                style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
               ),
             ],
           ),

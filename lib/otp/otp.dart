@@ -62,6 +62,7 @@ class OtpScreen extends StatelessWidget {
                   'Resend Code in 60 s',
                   style: TextStyle(
                     color: primary,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ),

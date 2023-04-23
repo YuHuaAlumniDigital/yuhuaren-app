@@ -55,7 +55,10 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              // ActivityTypeFilter(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: ActivityTypeFilter(filters: ['SJKC', 'SMJK'],),
+              ),
               // Text(
               //   'Upcoming Events',
               //   style: TextStyle(fontSize: 16),

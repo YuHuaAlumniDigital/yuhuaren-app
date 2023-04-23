@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/home/drawer.dart';
 
@@ -57,61 +55,97 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: ActivityTypeFilter(filters: ['SJKC', 'SMJK'],),
+                child: ActivityTypeFilter(
+                  filters: ['SJKC', 'SMJK'],
+                ),
               ),
-              // Text(
-              //   'Upcoming Events',
-              //   style: TextStyle(fontSize: 16),
-              // ),
-              // Container(
-              //   height: 300,
-              //   child: ListView.separated(
-              //       scrollDirection: Axis.horizontal,
-              //       itemCount: 10,
-              //       itemBuilder: (BuildContext context, int index) =>
-              //           ActivityCard(data: data),
-              //       separatorBuilder: (BuildContext context, int index) =>
-              //           SizedBox(
-              //             width: 10,
-              //           )),
-              // ),
-              // Text(
-              //   'Joined Events',
-              //   style: TextStyle(fontSize: 16),
-              // ),
-              // Container(
-              //   height: 300,
-              //   child: ListView.separated(
-              //       scrollDirection: Axis.horizontal,
-              //       itemCount: 10,
-              //       itemBuilder: (BuildContext context, int index) =>
-              //           ActivityCard(data: data),
-              //       separatorBuilder: (BuildContext context, int index) =>
-              //           SizedBox(
-              //             width: 10,
-              //           )),
-              // ),
-              // Text(
-              //   'Past Events',
-              //   style: TextStyle(fontSize: 16),
-              // ),
-              // Container(
-              //   height: 130,
-              //   child: ListView.separated(
-              //       scrollDirection: Axis.horizontal,
-              //       itemCount: 10,
-              //       itemBuilder: (BuildContext context, int index) =>
-              //           MinimizedActivityCard(data: data),
-              //       separatorBuilder: (BuildContext context, int index) =>
-              //           SizedBox(
-              //             width: 10,
-              //           )),
-              // )
+              categoryTitle('Upcoming Events'),
+              Container(
+                constraints: BoxConstraints(maxHeight: 320),
+                color: Colors.transparent,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) => Column(
+                    children: [
+                      ActivityCard(),
+                      Spacer(),
+                    ],
+                  ),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: const SizedBox(width: 20),
+                  ),
+                ),
+              ),
+              categoryTitle('Joined Events'),
+              Container(
+                constraints: BoxConstraints(maxHeight: 320),
+                color: Colors.transparent,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) => Column(
+                    children: [
+                      ActivityCard(),
+                      Spacer(),
+                    ],
+                  ),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: const SizedBox(width: 20),
+                  ),
+                ),
+              ),
+              categoryTitle('Past Events'),
+              Container(
+                constraints: BoxConstraints(maxHeight: 150),
+                color: Colors.transparent,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) => Column(
+                    children: [
+                      MinimizedActivityCard(),
+                      Spacer(),
+                    ],
+                  ),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: const SizedBox(width: 20),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
       bottomNavigationBar: BottomNavBar(),
+    );
+  }
+
+  Widget categoryTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 18.0),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 }

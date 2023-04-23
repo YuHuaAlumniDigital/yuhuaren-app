@@ -3,14 +3,25 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/shared/color.dart';
 
-class ActivityCard extends StatelessWidget {
+class ActivityCard extends StatefulWidget {
   final String title = 'Chinese New Year Ceremony';
+
   final String date = '11/1/2024 Saturday, at 6.30p.m.';
+
   final String tag = 'SJKC';
+
+  final bool liked = true;
 
   const ActivityCard({
     super.key,
   });
+
+  @override
+  State<ActivityCard> createState() => _ActivityCardState();
+}
+
+class _ActivityCardState extends State<ActivityCard> {
+  var _liked = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +72,7 @@ class ActivityCard extends StatelessWidget {
                         horizontal: 12,
                         vertical: 8,
                       ),
-                      child: DepartmentLabel(tag: tag),
+                      child: DepartmentLabel(tag: widget.tag),
                     ),
                   ),
                 ),
@@ -74,7 +85,7 @@ class ActivityCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  widget.title,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -83,7 +94,7 @@ class ActivityCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                   child: Text(
-                    date,
+                    widget.date,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -109,9 +120,16 @@ class ActivityCard extends StatelessWidget {
                         Spacer(),
                         IconButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {},
+                            onPressed: () {
+                              print(_liked.toString());
+                              setState(() {
+                                _liked = !_liked;
+                              });
+                            },
                             icon: Icon(
-                              Icons.favorite,
+                              _liked
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
                               color: primary,
                               size: 26,
                             ))
@@ -154,7 +172,6 @@ class MinimizedActivityCard extends StatelessWidget {
   final date = '13/3/2023';
   final time = 'Sunday 10:00am';
   final tag = 'SJKC';
-
 
   const MinimizedActivityCard({Key? key}) : super(key: key);
 

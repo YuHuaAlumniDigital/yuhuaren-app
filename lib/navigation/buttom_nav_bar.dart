@@ -13,6 +13,7 @@ final navBarItems = NavBarRouter([
     icon: Icons.notifications_none_outlined,
     label: 'Notification',
     route: '/notification',
+    number: 1,
   ),
   NavBarItem(
     icon: Icons.account_circle_outlined,
@@ -25,35 +26,86 @@ class NavBarItem {
   final IconData icon;
   final String label;
   final String route;
+  final int? number;
 
-  NavBarItem({required this.icon, required this.label, required this.route});
+  NavBarItem(
+      {required this.icon,
+      required this.label,
+      required this.route,
+      this.number});
 
   BottomNavigationBarItem get bottomNavBarItem {
     return BottomNavigationBarItem(
-      icon: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 64, minHeight: 32),
-          child: Icon(
-            icon,
-            color: primary,
-          ),
-        ),
-      ),
-      activeIcon: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 64, minHeight: 32),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: primary),
-          child: Icon(
-            icon,
-            color: Colors.white,
-          ),
-        ),
-      ),
+      icon: _hasNumber() ? NumberOnTop(child: nonActive) : nonActive,
+      activeIcon: _hasNumber() ? NumberOnTop(child: active) : active,
       label: label,
     );
+  }
+
+  bool _hasNumber() => number != null && number! > 0 ;
+
+  Widget get active {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+        constraints: const BoxConstraints(minWidth: 64, minHeight: 32),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16), color: primary),
+        child: Icon(
+          icon,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget get nonActive {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+        constraints: const BoxConstraints(minWidth: 64, minHeight: 32),
+        child: Icon(
+          icon,
+          color: primary,
+        ),
+      ),
+    );
+  }
+}
+
+class NumberOnTop extends StatelessWidget {
+  final Widget child;
+
+  const NumberOnTop({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      child,
+      Positioned(
+        right: 18,
+        top: 5,
+        child: Container(
+          padding: EdgeInsets.all(1),
+          decoration: BoxDecoration(
+            color: Color(0xffB3261E),
+            shape: BoxShape.circle
+          ),
+          constraints: BoxConstraints(
+            minWidth: 14,
+            minHeight: 14,
+          ),
+          child: Text(
+            '1',
+            style: new TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      )
+    ]);
   }
 }
 

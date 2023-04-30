@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yuhuaren_app/shared/color.dart';
 
-final navBarItems = NavBarRouter([
-  NavBarItem(icon: Icons.view_agenda_outlined, label: 'Home', route: '/home'),
-  NavBarItem(
+NavBarRouter navBarItems(int notificationNumber) => NavBarRouter([
+  const NavBarItem(icon: Icons.view_agenda_outlined, label: 'Home', route: '/home'),
+  const NavBarItem(
     icon: Icons.calendar_today_outlined,
     label: 'Schedule',
     route: '/schedule',
@@ -13,9 +13,9 @@ final navBarItems = NavBarRouter([
     icon: Icons.notifications_none_outlined,
     label: 'Notification',
     route: '/notification',
-    number: 1,
+    number: notificationNumber,
   ),
-  NavBarItem(
+  const NavBarItem(
     icon: Icons.account_circle_outlined,
     label: 'Profile',
     route: '/profile',
@@ -28,7 +28,7 @@ class NavBarItem {
   final String route;
   final int? number;
 
-  NavBarItem(
+  const NavBarItem(
       {required this.icon,
       required this.label,
       required this.route,
@@ -147,9 +147,10 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = getCurrentIndex(context);
+    var _navBarItems = navBarItems(1);
+    final currentIndex = getCurrentIndex(context, _navBarItems);
 
-    var children = navBarItems.bottomNavBarItem;
+    var children = _navBarItems.bottomNavBarItem;
 
     return Container(
       decoration: const BoxDecoration(
@@ -163,7 +164,7 @@ class BottomNavBar extends StatelessWidget {
         currentIndex: currentIndex,
         selectedItemColor: primary,
         onTap: (idx) {
-          route(context, idx);
+          route(context, _navBarItems, idx);
         },
         unselectedItemColor: primary,
         showUnselectedLabels: true,
@@ -173,15 +174,11 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 
-  void route(BuildContext context, int idx) {
-    context.go(getRoute(idx));
+  void route(BuildContext context, NavBarRouter router, int idx) {
+    context.go(router.getRouteByIndex(idx));
   }
 
-  int getCurrentIndex(BuildContext context) {
-    return getIdx(GoRouter.of(context).location);
+  int getCurrentIndex(BuildContext context, NavBarRouter router) {
+    return router.getIdxByRoute(GoRouter.of(context).location);
   }
-
-  String getRoute(int idx) => navBarItems.getRouteByIndex(idx);
-
-  int getIdx(String route) => navBarItems.getIdxByRoute(route);
 }

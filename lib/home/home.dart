@@ -30,11 +30,12 @@ class HomeScreen extends StatelessWidget {
       drawer: HomeDrawer(),
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-          colors: background,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        )),
+          gradient: LinearGradient(
+            colors: background,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView(
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   separatorBuilder: (BuildContext context, int index) =>
                       Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.transparent,
                     ),
                     child: const SizedBox(width: 20),
                   ),
@@ -99,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   separatorBuilder: (BuildContext context, int index) =>
                       Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.transparent,
                     ),
                     child: const SizedBox(width: 20),
                   ),
@@ -122,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                   separatorBuilder: (BuildContext context, int index) =>
                       Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.transparent,
                     ),
                     child: const SizedBox(width: 20),
                   ),

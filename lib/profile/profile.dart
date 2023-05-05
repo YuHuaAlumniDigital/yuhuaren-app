@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yuhuaren_app/navigation/buttom_nav_bar.dart';
+import 'package:yuhuaren_app/shared/color.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -8,57 +9,66 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: background.first,
         title: Text('Profile'),
         centerTitle: false,
       ),
       body: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40.0,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              EditTextFormField(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                labelText: 'Name',
-                initialValue: 'Sum Yin Chuang',
-              ),
-              EditTextFormField(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                labelText: 'Phone Number',
-                initialValue: '012-3456789',
-              ),
-              EditTextFormField(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                labelText: 'Email',
-                initialValue: 'example@email.com',
-              ),
-              EditTextFormField(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                labelText: 'Password',
-                obscureText: true,
-                initialValue: 'asdf1234',
-              )
-            ],
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: background,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xff4DA5A4DE),
-              blurRadius: 2,
-              spreadRadius: 0,
-              offset: const Offset(0, 1),
+        child: Column(
+          children: [
+            Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  EditTextFormField(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                    labelText: 'Name',
+                    initialValue: 'Sum Yin Chuang',
+                  ),
+                  EditTextFormField(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                    labelText: 'Phone Number',
+                    initialValue: '012-3456789',
+                  ),
+                  EditTextFormField(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                    labelText: 'Email',
+                    initialValue: 'example@email.com',
+                  ),
+                  EditTextFormField(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                    labelText: 'Password',
+                    obscureText: true,
+                    initialValue: 'asdf1234',
+                  )
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xff4DA5A4DE),
+                    blurRadius: 2,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 1),
+                  ),
+                  BoxShadow(
+                    color: Color(0xff406664CC),
+                    blurRadius: 14,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 1.5),
+                  ),
+                ],
+              ),
             ),
-            BoxShadow(
-              color: Color(0xff406664CC),
-              blurRadius: 14,
-              spreadRadius: 0,
-              offset: const Offset(0, 1.5),
-            ),
+            Spacer(),
           ],
         ),
       ),
@@ -92,35 +102,56 @@ class _EditTextFormFieldState extends State<EditTextFormField> {
     var icon = Icon(Icons.edit_outlined);
     var text = Text('Edit');
 
-    return Padding(
-      padding: widget.padding,
-      child: Row(
-        children: [
-          Expanded(
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: widget.labelText,
-                border: InputBorder.none,
-              ),
-              initialValue: widget.initialValue,
-              obscureText: widget.obscureText,
-              enabled: _enabled,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xff4DA5A4DE),
+            blurRadius: 2,
+            spreadRadius: 0,
+            offset: const Offset(0, 1),
           ),
-          TextButton.icon(
-            onPressed: () {
-              setState(() {
-                _enabled = !_enabled;
-              });
-            },
-            icon: icon,
-            label: text,
-            style: TextButton.styleFrom(
-              maximumSize: Size(200, 200),
-              minimumSize: Size(10, 10),
-            ),
+          BoxShadow(
+            color: Color(0xff406664CC),
+            blurRadius: 14,
+            spreadRadius: 0,
+            offset: const Offset(0, 1.5),
           ),
         ],
+      ),
+      child: Padding(
+        padding: widget.padding,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: widget.labelText,
+                  border: InputBorder.none,
+                ),
+                initialValue: widget.initialValue,
+                obscureText: widget.obscureText,
+                enabled: _enabled,
+              ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                setState(() {
+                  _enabled = !_enabled;
+                });
+              },
+              icon: icon,
+              label: text,
+              style: TextButton.styleFrom(
+                maximumSize: Size(200, 200),
+                minimumSize: Size(10, 10),
+                backgroundColor: Colors.transparent,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

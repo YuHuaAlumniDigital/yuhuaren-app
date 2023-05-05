@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../navigation/buttom_nav_bar.dart';
+import '../shared/color.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: background.first,
         title: Text('Notification'),
         centerTitle: false,
         flexibleSpace: Container(
@@ -23,13 +24,22 @@ class NotificationScreen extends StatelessWidget {
           alignment: Alignment.bottomRight,
         ),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text("Sum Yin Chuang"),
-            subtitle: Text('teseting subtitle'),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: background,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-        ],
+        ),
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("Sum Yin Chuang"),
+              subtitle: Text('teseting subtitle'),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavBar(),
     );
